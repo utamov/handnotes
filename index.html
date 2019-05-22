@@ -1,0 +1,90 @@
+
+<!DOCTYPE HTML>
+<head>
+<link href="https://fonts.googleapis.com/css?family=Roboto+Slab&display=swap" rel="stylesheet">
+</head>
+<script>
+
+
+function calculateTimeUntil(date) {
+    var today = new Date(),
+        timeLeft = (date.getTime() - today.getTime())
+
+    return timeLeft
+}
+ function calculateDaysUntil(date) {
+   
+    let ms = calculateTimeUntil(date),
+        msInDay = 24*60*60*1000,
+        days = ms / msInDay;
+        return Math.ceil(days)
+
+    return days;
+}
+
+function isPastDue (date) {
+    return calculateTimeUntil(date) <= 0
+}
+// 
+class Nota {
+  constructor (dataEmissao, dataVencimento, descricao) {
+    this.dataEmissao = dataEmissao;
+    this.dataVencimento = dataVencimento;
+    this.descricao = descricao;
+  }
+  foiEmitida() {
+    return isPastDue(this.dataEmissao)
+  }
+  diasAteEmitir() {
+    return calculateDaysUntil(this.dataEmissao)
+  }
+  aindaVale() {
+    return isPastDue(this.dataVencimento)
+  }
+  diasAteVencer() {
+    return calculateDaysUntil(this.dataVencimento)
+  }
+}
+
+
+
+
+
+// Banco de notas
+var nota1 = new Nota(new Date('May 09 ,2019'), new Date('May 24, 2019'), 'Nota VIVO1');
+var nota2 = new Nota(new Date('May 09 ,2019'), new Date('May 24, 2019'), 'Nota VIVO2');
+var nota3 = new Nota(new Date('May 14 ,2019'), new Date('May 30, 2019'), 'Nota TOTVS');
+var nota4 = new Nota(new Date('May 11 ,2019'), new Date('Jun 09, 2019'), 'Nota Exchange');
+var nota5 = new Nota(new Date('May 11 ,2019'), new Date('Jun 09, 2019'), 'Nota Office365');
+var nota6 = new Nota(new Date('May 16 ,2019'), new Date('Jun 05, 2019'), 'Nota Digitro');
+
+
+
+
+//Array das notas
+var todasAsNotas  = [nota1,nota2,nota3,nota4,nota5,nota6];
+//Fim notas
+
+// loop
+
+for (let i = 0; i < todasAsNotas.length; ++i) {
+    let nota = todasAsNotas[i];
+    let diasRestantes = nota.foiEmitida() ? nota.diasAteVencer() : nota.diasAteEmitir();
+    let wrapper = document.createElement("div");
+    wrapper.id = `wrapper${i}`;
+    document.body.appendChild(wrapper);
+
+    let descriçãoNota = document.createElement("h1");
+    wrapper.appendChild(descriçãoNota);
+    descriçãoNota.innerHTML = nota.descricao;
+
+    let cronometroNota = document.createElement("p");
+    wrapper.appendChild(cronometroNota);
+    cronometroNota.innerHTML = `Restam ${diasRestantes} dias para ${nota.foiEmitida() ? `o vencimento` : `a emissão`} da nota`;;
+}
+</script>
+<body>
+  <h1 id='fixada'>Notas da TI<p id='credits'>madebysmlwithiago</p></h1>
+<h1 id='tiago'>also made with coneraki help</h1>
+</body>
+
