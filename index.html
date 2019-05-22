@@ -3,6 +3,58 @@
 <head>
 <link href="https://fonts.googleapis.com/css?family=Roboto+Slab&display=swap" rel="stylesheet">
 </head>
+<style>
+* {
+  font-family: 'Roboto Slab', serif;
+  font-weight: 600;
+}
+#credits {
+  font-size: .8rem;
+  margin: 0;
+  padding: 0;
+  color white;
+  opacity: 0.5;
+}
+#fixada {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  margin: 0;
+  padding: 0.6rem;
+  background-color: #6563b2;
+  
+  font-size: 1rem;
+  box-shadow: inset 2px 4px 0 white;
+}
+div {
+  background-color:  silver;
+  padding: 0.2rem 1rem;
+  margin: 1rem;
+  display: flex;
+  flex-direction: column;
+  border: 4px solid black;
+  
+  box-shadow: inset 4px 4px 0 white, inset -4px -4px 0 gray;
+  cursor:pointer;
+}
+div:hover {
+  transform:Scale(1.0166);
+}
+div:focus {
+    transform:Scale(1.0166);
+}
+body {
+  display: flex;
+  background: #8498b7;
+}
+
+#tiago {
+  font-size .2rem;
+  display: none;
+  left: 0;
+  opacity: 0;
+}
+</style>
 <script>
 
 
